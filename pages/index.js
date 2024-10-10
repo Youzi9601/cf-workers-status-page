@@ -92,12 +92,13 @@ export default function Index({ config, kvMonitors, kvMonitorsLastUpdate }) {
           <div>
             由{' '}
             <a href="https://workers.cloudflare.com/" target="_blank">
-              Cloudflare Workers{' '}
+              Cloudflare Workers
             </a>
-            &{' '}
+            {' '}&{' '}
             <a href="https://flareact.com/" target="_blank">
-              Flareact{' '} 運行
+              Flareact
             </a>
+            {' '}運行
           </div>
           <div>
             <a
