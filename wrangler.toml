@@ -12,6 +12,10 @@ crons = ["*/10 * * * *"]
 bucket = "out"
 entry-point = "./"
 
+# wrangler.toml (wrangler v3.78.6^)
+[observability]
+enabled = true
+
 # uncomment and adjust following if you are not using GitHub Actions
 #[env.production]
 #kv-namespaces = [{binding="KV_STATUS_PAGE", id="xxxx", preview_id=""}]
