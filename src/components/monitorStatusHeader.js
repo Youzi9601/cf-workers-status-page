@@ -49,7 +49,7 @@ export default function MonitorStatusHeader({ kvMonitorsLastUpdate }) {
     if (minutes > 0 || timeParts.length > 0) timeParts.push(`${ minutes }分鐘`);
     if (remainingSeconds > 0 || timeParts.length === 0) timeParts.push(`${ remainingSeconds }秒`);
 
-    return timeParts.join(' ');
+    return timeParts.join('');
   };
 
   return (
