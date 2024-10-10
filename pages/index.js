@@ -32,7 +32,7 @@ export async function getEdgeProps() {
       kvMonitors: kvMonitors ? kvMonitors.monitors : {},
       kvMonitorsLastUpdate: kvMonitors ? kvMonitors.lastUpdate : {},
     },
-    // Revalidate these props once every x seconds
+    // 每 x 秒重新驗證一次這些 props
     revalidate: 5,
   }
 }
@@ -90,21 +90,21 @@ export default function Index({ config, kvMonitors, kvMonitorsLastUpdate }) {
         })}
         <div className="flex flex-row justify-between mt-4 text-sm">
           <div>
-            Powered by{' '}
+            由{' '}
             <a href="https://workers.cloudflare.com/" target="_blank">
               Cloudflare Workers{' '}
             </a>
             &{' '}
             <a href="https://flareact.com/" target="_blank">
-              Flareact{' '}
+              Flareact{' '} 運行
             </a>
           </div>
           <div>
             <a
-              href="https://github.com/eidam/cf-workers-status-page"
+              href="https://github.com/Youzi9601/"
               target="_blank"
             >
-              Get Your Status Page
+              聯絡我們
             </a>
           </div>
         </div>

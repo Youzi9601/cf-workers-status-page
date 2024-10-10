@@ -27,16 +27,16 @@ export async function notifySlack(monitor, operational) {
   const payload = {
     attachments: [
       {
-        fallback: `Monitor ${monitor.name} changed status to ${getOperationalLabel(operational)}`,
+        fallback: `監視器 ${monitor.name} 的狀態已變更為 ${getOperationalLabel(operational)}`,
         color: operational ? '#36a64f' : '#f2c744',
         blocks: [
           {
             type: 'section',
             text: {
               type: 'mrkdwn',
-              text: `Monitor *${
+              text: `監視器 *${
                 monitor.name
-              }* changed status to *${getOperationalLabel(operational)}*`,
+              }* 將狀態變更為 *${getOperationalLabel(operational)}*`,
             },
           },
           {
@@ -48,7 +48,7 @@ export async function notifySlack(monitor, operational) {
                   monitor.method ? monitor.method : 'GET'
                 } ${monitor.url}\` - :eyes: <${
                   config.settings.url
-                }|Status Page>`,
+                }|狀態頁>`,
               },
             ],
           },
@@ -64,13 +64,13 @@ export async function notifySlack(monitor, operational) {
 }
 
 export async function notifyTelegram(monitor, operational) {
-  const text = `Monitor *${monitor.name.replaceAll(
+  const text = `監視器 *${monitor.name.replaceAll(
     '-',
     '\\-',
-  )}* changed status to *${getOperationalLabel(operational)}*
+  )}* 將狀態變更為 *${getOperationalLabel(operational)}*
   ${operational ? '✅' : '❌'} \`${monitor.method ? monitor.method : 'GET'} ${
     monitor.url
-  }\` \\- 👀 [Status Page](${config.settings.url})`
+  }\` \\- 👀 [狀態頁](${config.settings.url})`
 
   const payload = new FormData()
   payload.append('chat_id', SECRET_TELEGRAM_CHAT_ID)
@@ -96,7 +96,7 @@ export async function notifyDiscord(monitor, operational) {
         }`,
         description: `\`${monitor.method ? monitor.method : 'GET'} ${
           monitor.url
-        }\` - :eyes: [Status Page](${config.settings.url})`,
+        }\` - :eyes: [狀態頁](${config.settings.url})`,
         color: operational ? 3581519 : 13632027,
       },
     ],

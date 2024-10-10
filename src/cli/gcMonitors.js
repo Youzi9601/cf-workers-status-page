@@ -10,7 +10,7 @@ const kvMonitorsKey = 'monitors_data_v1_1'
 
 if (!accountId || !namespaceId || !apiToken) {
   console.error(
-    'Missing required environment variables: CF_ACCOUNT_ID, KV_NAMESPACE_ID, CF_API_TOKEN',
+    '缺少所需的環境變數： CF_ACCOUNT_ID, KV_NAMESPACE_ID, CF_API_TOKEN',
   )
   process.exit(0)
 }

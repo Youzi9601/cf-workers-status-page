@@ -1,7 +1,7 @@
 settings:
   title: '狀態列表'
   url: 'https://status.youzi.cloudns.ch' # used for Slack messages
-  logo: logo-192x192.png # image in ./public/ folder
+  logo: status.png # image in ./public/ folder
   daysInHistogram: 90 # number of days you want to display in histogram
   collectResponseTimes: true # collects avg response times from CRON locations
 
@@ -26,7 +26,7 @@ monitors:
 
   - id: bot-youzi # unique identifier
     name: bot.youzi.cloudns.ch
-    description: '主要網站' # default=empty
+    description: 'Discord機器人網站' # default=empty
     url: 'https://bot.youzi.cloudns.ch/' # URL to fetch
     method: GET # default=GET
     expectStatus: 200 # operational status, default=200
