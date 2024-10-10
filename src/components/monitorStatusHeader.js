@@ -25,8 +25,32 @@ export default function MonitorStatusHeader({ kvMonitorsLastUpdate }) {
         setElapsedTime(Math.round((Date.now() - kvMonitorsLastUpdate.time) / 1000));
       }
     }, 1000);
+
     return () => clearInterval(interval);
   }, [kvMonitorsLastUpdate.time]);
+
+  const formatElapsedTime = (seconds) => {
+    const years = Math.floor(seconds / (365 * 24 * 60 * 60));
+    seconds %= (365 * 24 * 60 * 60);
+    const months = Math.floor(seconds / (30 * 24 * 60 * 60));
+    seconds %= (30 * 24 * 60 * 60);
+    const days = Math.floor(seconds / (24 * 60 * 60));
+    seconds %= (24 * 60 * 60);
+    const hours = Math.floor(seconds / (60 * 60));
+    seconds %= (60 * 60);
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    const timeParts = [];
+    if (years > 0) timeParts.push(`${ years }年`);
+    if (months > 0) timeParts.push(`${ months }個月`);
+    if (days > 0) timeParts.push(`${ days }天`);
+    if (hours > 0 || timeParts.length > 0) timeParts.push(`${ hours }小時`);
+    if (minutes > 0 || timeParts.length > 0) timeParts.push(`${ minutes }分鐘`);
+    if (remainingSeconds > 0 || timeParts.length === 0) timeParts.push(`${ remainingSeconds }秒`);
+
+    return timeParts.join(' ');
+  };
 
   return (
     <div className={`card mb-4 font-semibold ${ classes[color] }`}>
@@ -34,7 +58,7 @@ export default function MonitorStatusHeader({ kvMonitorsLastUpdate }) {
         <div>{text}</div>
         {kvMonitorsLastUpdate.time && (
           <div className="text-xs font-light">
-            在 {elapsedTime} 秒前 (於 {locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc} 獲取)
+            在 {formatElapsedTime(elapsedTime)} 前 (於 {locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc} 獲取)
           </div>
         )}
       </div>
