@@ -1,35 +1,43 @@
-import config from '../../config.yaml'
-import { locations } from '../functions/locations'
+import React, { useEffect, useState } from 'react';
+import config from '../../config.yaml';
+import { locations } from '../functions/locations';
 
 const classes = {
   green:
     'bg-green-200 text-green-700 dark:bg-green-700 dark:text-green-200 border-green-300 dark:border-green-600',
   yellow:
     'bg-yellow-200 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-200 border-yellow-300 dark:border-yellow-600',
-}
+};
 
 export default function MonitorStatusHeader({ kvMonitorsLastUpdate }) {
-  let color = 'green'
-  let text = config.settings.allmonitorsOperational
+  const [elapsedTime, setElapsedTime] = useState(0);
+  let color = 'green';
+  let text = config.settings.allmonitorsOperational;
 
   if (!kvMonitorsLastUpdate.allOperational) {
-    color = 'yellow'
-    text = config.settings.notAllmonitorsOperational
+    color = 'yellow';
+    text = config.settings.notAllmonitorsOperational;
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (kvMonitorsLastUpdate.time) {
+        setElapsedTime(Math.round((Date.now() - kvMonitorsLastUpdate.time) / 1000));
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [kvMonitorsLastUpdate.time]);
+
   return (
-    <div className={`card mb-4 font-semibold ${classes[color]}`}>
+    <div className={`card mb-4 font-semibold ${ classes[color] }`}>
       <div className="flex flex-row justify-between items-center">
         <div>{text}</div>
-        {kvMonitorsLastUpdate.time && typeof window !== 'undefined' && (
+        {kvMonitorsLastUpdate.time && (
           <div className="text-xs font-light">
-            在 {' '}
-            {Math.round((Date.now() - kvMonitorsLastUpdate.time) / 1000)} 秒
-            前 (於{' '}
-            {locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc}獲取)
+            在 {elapsedTime} 秒前 (於 {locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc} 獲取)
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
