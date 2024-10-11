@@ -18,6 +18,8 @@ const infoIcon = (
 )
 
 export default function MonitorCard({ key, monitor, data }) {
+  const statusCode = data.lastCheck.status;
+  const statusText = data.lastCheck.statusText;
   return (
     <div key={key} className="card">
       <div className="flex flex-row justify-between items-center mb-2">
@@ -27,6 +29,13 @@ export default function MonitorCard({ key, monitor, data }) {
               {infoIcon}
               <div className="content text-center transform -translate-y-1/2 top-1/2 ml-8 w-72 text-sm object-left">
                 {monitor.description}
+                <br />
+                {statusCode && (
+                  <span>
+                    <br />
+                    狀態: <code>{statusCode}</code> {statusText && `/ ${ statusText }`}
+                  </span>
+                )}
               </div>
             </div>
           )}
@@ -51,7 +60,7 @@ export default function MonitorCard({ key, monitor, data }) {
       <MonitorHistogram monitorId={monitor.id} kvMonitor={data} />
 
       <div className="flex flex-row justify-between items-center text-gray-400 text-sm">
-        <div>{config.settings.daysInHistogram} 幾天前</div>
+        <div>{config.settings.daysInHistogram} 天前</div>
         <div>今天</div>
       </div>
     </div>

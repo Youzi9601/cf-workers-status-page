@@ -58,7 +58,7 @@ export default function MonitorStatusHeader({ kvMonitorsLastUpdate }) {
         <div>{text}</div>
         {kvMonitorsLastUpdate.time && (
           <div className="text-xs font-light">
-            在 {formatElapsedTime(elapsedTime)} 前 (於 {locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc} 獲取)
+            在 {formatElapsedTime(elapsedTime)} 前於 {locations[kvMonitorsLastUpdate.loc] || kvMonitorsLastUpdate.loc} 更新
           </div>
         )}
       </div>

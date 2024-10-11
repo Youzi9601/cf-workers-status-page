@@ -12,7 +12,7 @@ settings:
   monitorLabelNoData: '沒有資料'
   dayInHistogramNoData: '沒有資料'
   dayInHistogramOperational: '運行穩定'
-  dayInHistogramNotOperational: '事件' # xx incident(s) recorded
+  dayInHistogramNotOperational: '個事件紀錄' # xx incident(s) recorded
 
 monitors:
   - id: www-youzi # unique identifier
